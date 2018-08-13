@@ -22,4 +22,16 @@ describe('myGolfStats API', function() {
             expect(res).to.be.html;
         });
     });
+    it('should return status 200 and HTML on GET to root/edits.html', function() {
+        return chai.request(app).get('/edits.html').then(function(res) {
+            expect(res).to.have.status(200);
+            expect(res).to.be.html;
+        });
+    });
+    it('should return status 200 and HTML on GET to root/login.html', function() {
+        return chai.request(app).get('/login.html').then(function(res) {
+            expect(res).to.have.status(200);
+            expect(res).to.be.html;
+        });
+    });
 });

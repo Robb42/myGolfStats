@@ -3,23 +3,31 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>myGolfStats</title>
+    <meta name="description" content="A golfers personal statistics app which documents rounds of golf, compiling data to provide handicap, reveal trends and display other relevant statistics">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <title>myGolfStats</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
+    
+    <link rel="stylesheet" type="text/css" media="screen" href="./css/index.css">
+    <link rel="stylesheet" type="text/css" href="./css/float-grid.css">
 </head>
 <body>
     <header role="banner">
+        <h1>myGolfStats</h1>
     </header>
 
     <main role="main">
-        <p>Hello World! - testing branch</p>
+        <section role="region" id="golfer-info"></section>
+        <section role="region" id="stat-info"></section>
+        <section role="region" id="round-info"></section>
     </main>
 
     <footer role="contentinfo">
 
     </footer>
     
-    <script src="main.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="./js/index.js"></script>
 </body>
 </html>
 
