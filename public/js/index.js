@@ -23,9 +23,9 @@ function getStatInfo() {
     let overParAvg;
     for (let i = 0; i < MOCK_ROUNDS.golfRounds.length; i++) {
         if (MOCK_ROUNDS.golfRounds[i].holeScores.length < 10) {
-            runningSumArray.push(((MOCK_ROUNDS.golfRounds[i].holeScores.reduce((a,b) => a+b, 0))*2)-72);
+            runningSumArray.push(((MOCK_ROUNDS.golfRounds[i].roundScore())*2)-72);
         } else {
-            runningSumArray.push((MOCK_ROUNDS.golfRounds[i].holeScores.reduce((a,b) => a+b, 0))-72);
+            runningSumArray.push((MOCK_ROUNDS.golfRounds[i].roundScore())-72);
         }
     }
     overParAvg = (runningSumArray.reduce((a,b) => a+b, 0)/runningSumArray.length);;
@@ -34,9 +34,9 @@ function getStatInfo() {
     let sortedHandicapArray = [];
     for (let i = 0; i < MOCK_ROUNDS.golfRounds.length; i++) {
         if (MOCK_ROUNDS.golfRounds[i].holeScores.length > 10) {
-            handicapDiffArray.push((MOCK_ROUNDS.golfRounds[i].holeScores.reduce((a,b) => a+b, 0) - MOCK_COURSES.golfCourses[0].courseRating) * 113 / MOCK_COURSES.golfCourses[0].courseSlope);
+            handicapDiffArray.push((MOCK_ROUNDS.golfRounds[i].roundScore() - MOCK_COURSES.golfCourses[0].courseRating) * 113 / MOCK_COURSES.golfCourses[0].courseSlope);
         } else if (MOCK_ROUNDS.golfRounds[i].holeScores.length < 10) {
-            handicapDiffArray.push(((MOCK_ROUNDS.golfRounds[i].holeScores.reduce((a,b) => a+b, 0)*2) - (MOCK_COURSES.golfCourses[0].courseRating*2)) * 113 / MOCK_COURSES.golfCourses[0].courseSlope);
+            handicapDiffArray.push(((MOCK_ROUNDS.golfRounds[i].roundScore()*2) - (MOCK_COURSES.golfCourses[0].courseRating*2)) * 113 / MOCK_COURSES.golfCourses[0].courseSlope);
         } 
     }
     sortedHandicapArray = handicapDiffArray.sort();
@@ -93,33 +93,45 @@ function getStatInfo() {
     }
     handicapResult = Math.round(handicapResult * 10) / 10;
 
-    let statReturnArray = [overParAvg, handicapResult];
+    //need to add conditional for 9 holes vs 18 since the best 9 hole day will always be best.  
+    let bestRoundIndex = 0;
+    let currentBestRoundValue = MOCK_ROUNDS.golfRounds[0].roundScore();
+    for (let i = 1; i < MOCK_ROUNDS.golfRounds.length; i++) {
+        if (MOCK_ROUNDS.golfRounds[i].roundScore() < currentBestRoundValue) {
+            currentBestRoundValue = MOCK_ROUNDS.golfRounds[i].roundScore();
+            bestRoundIndex = i;
+        }
+    }
+    let bestRound = MOCK_ROUNDS.golfRounds[bestRoundIndex];
+
+    let statReturnArray = [overParAvg, handicapResult, bestRound];
     //need to fix handicap algorthm to only take last 20 rounds(if more than 20 rounds).
     return statReturnArray;
 }
 
 function displayGolfInfo(rounds, golfers, courses, stats) {
-
     $('#golfer-info').append(`
     ${golfers.golfers[0].golferName.firstName} ${golfers.golfers[0].golferName.lastName}
     <hr>
     `)
 
     $('#stat-info').append(`
-        Current over par average: ${stats[0]}<br>
-        Current USGA Handicap: ${stats[1]}
+        USGA Handicap: ${stats[1]}<br>
+        Avg shots over par per round (18 holes): ${stats[0]}<br>
+        Best round: ${stats[2].roundDate} @ ${courses.courseName} - shot a ${stats[2].roundScore()} over ${stats[2].holeScores.length} holes on a Par ${courses.totalPar}
         <hr>
     `)
 
     rounds.golfRounds.forEach(function(element) {
-        let roundScore = element.holeScores.reduce((a,b) => a+b, 0);
         $('#round-info').append(`
             ${element.roundDate} | 
-            ${courses.courseName} |
-            ${element.holeScores} = ${roundScore} |
-            ${courses.totalPar} |
-            +${roundScore - courses.totalPar} |
-            <br>
+            ${courses.courseName} | 
+            ${courses.courseLocation}<br>
+            Holes played: ${element.holeScores.length} |
+            Shots ${element.roundScore()} |
+            Course Par ${courses.totalPar} |
+            Score +${element.roundScore() - courses.totalPar}
+            <br><br>
         `)
     });
 }
