@@ -11,15 +11,27 @@
     <link rel="stylesheet" type="text/css" media="screen" href="./css/index.css">
     <link rel="stylesheet" type="text/css" href="./css/float-grid.css">
 </head>
-<body>
+<body class="background">
     <header role="banner">
-        <h1>myGolfStats</h1>
+        <div class="row">
+            <nav role="navigation" class="col-12">
+                <h1>myGolfStats</h1>
+            </nav>
+        </div>
     </header>
 
     <main role="main">
-        <section role="region" id="golfer-info"></section>
-        <section role="region" id="stat-info"></section>
-        <section role="region" id="round-info"></section>
+        <div class="row">
+            <div class="col-12">
+                <section role="region" id="player-card" class="playerCardContainer">
+                    <div id="golfer-info" class="golferInfo"></div>
+                    <div id="stat-info" class="statInfo"></div>
+                    <div id="round-info"></div>
+
+
+                </section>
+            </div>
+        </div>
     </main>
 
     <footer role="contentinfo">
