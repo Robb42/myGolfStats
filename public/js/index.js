@@ -112,14 +112,14 @@ function getStatInfo() {
 function displayGolfInfo(rounds, golfers, courses, stats) {
     $('#golfer-info').append(`
     ${golfers.golfers[0].golferName.firstName} ${golfers.golfers[0].golferName.lastName}
-    <hr>
+    
     `)
 
     $('#stat-info').append(`
         USGA Handicap: ${stats[1]}<br>
         Avg shots over par per round (18 holes): ${stats[0]}<br>
         Best round: ${stats[2].roundDate} @ ${courses.courseName} - shot a ${stats[2].roundScore()} over ${stats[2].holeScores.length} holes on a Par ${courses.totalPar}
-        <hr>
+        
     `)
 
     rounds.golfRounds.forEach(function(element) {
