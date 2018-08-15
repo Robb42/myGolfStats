@@ -14,7 +14,13 @@ html {
 	background-size: cover;
 }
 
-.playerCardContainer {
+fieldset {
+	border: 0 none;
+	padding: 10px;
+	margin: 0;
+}
+
+.mainCardContainer {
 	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
@@ -40,4 +46,83 @@ html {
 	text-align: center;
 	padding-top: 10px;
 	padding-bottom: 10px;
+}
+
+.addRoundButton {
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.roundInfo > h2 {
+	margin-top: 0;
+	margin-bottom: 16px;
+}
+
+.roundResults {
+	width: 65%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.roundResult > p:hover {
+	background-color: rgba(54,100,17);
+}
+
+.roundResults > p {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding-top: 16px;
+	padding-bottom: 16px;
+}
+
+.addRound {
+	background-color: rgba(54, 100, 17, 0.6);
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.frontNine {
+	display: inline-block;
+	width: 50%;
+}
+
+.backNine {
+	display: inline-block;
+	width: 50%;
+}
+
+.frontNine > input {
+	width: 30px;
+}
+
+.backNine > input {
+	width: 30px;
+}
+
+legend {
+	font-weight: bold;
+}
+
+.editRound {
+	background-color: rgba(54, 100, 17, 0.6);
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.addCourse {
+	background-color: rgba(54, 100, 17, 0.6);
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.frontNinePars > input {
+	width: 30px;
+}
+
+.backNinePars > input {
+	width: 30px;
 }

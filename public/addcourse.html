@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A golfers personal statistics app which documents rounds of golf, compiling data to provide handicap, reveal trends and display other relevant statistics">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>myGolfStats</title>
+    <!--should additional html pages have different titles/other attributes?-->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
+    
+    <link rel="stylesheet" type="text/css" media="screen" href="./css/index.css">
+    <link rel="stylesheet" type="text/css" href="./css/float-grid.css">
+</head>
+<body class="background">
+    <header role="banner">
+        <div class="row">
+            <nav role="navigation" class="col-12">
+                <h1>myGolfStats</h1>
+            </nav>
+        </div>
+    </header>
+
+    <main role="main">
+        <div class="row">
+            <div class="col-12">
+                <section role="region" id="edits-card" class="editsCard mainCardContainer">
+                    <div id="add-course" class="addCourse" aria-live="polite">
+                        
+                        <form id="add-course-form" class="addCourseForm" action="#" method="post">
+                            <h2>Add Golf Course</h2>
+                            <fieldset name="add-golf-course">
+                             
+                                <label for="course-name">Course name</label><br>
+                                <input type="text" name="course-name" id="course-name" required><br>
+
+                                <label for="course-city">Town/city</label><br>
+                                <input type="text" name="course-city" id="course-city" required><br>
+
+                                <label for="course-state">State</label><br>
+                                <input type="text" name="course-state" id="course-state" required><br>
+
+                                <label for="course-rating">Course Rating</label><br>
+                                <input type="text" name="course-rating" id="course-rating" required><br>
+
+                                <label for="course-slope">Slope</label><br>
+                                <input type="text" name="course-slope" id="course-slope" required><br>
+
+                            </fieldset>
+
+                            <fieldset>
+                                <legend>Length of course?</legend>
+                                <input type="radio" name="nine-or-eighteen" id="nine-or-ans1" value="0" checked>
+                                <label for="nine-or-ans1">9 holes</label>
+                                <br>
+                                <input type="radio" name="nine-or-eighteen" id="nine-or-ans2" value="0" checked>
+                                <label for="nine-or-ans2">18 holes</label><br>
+
+                            </fieldset>
+
+                            <fieldset name="course-pars">
+                                <div class="frontNinePars">
+                                    <legend>Front 9 pars</legend>
+                                    <label for="first-hole-par">Hole 1</label>
+                                    <input type="text" name="first-hole-par" id="first-hole-par" required>
+
+                                    <label for="second-hole-par">Hole 2</label>
+                                    <input type="text" name="second-hole-par" id="second-hole-par" required>
+
+                                    <label for="third-hole-par">Hole 3</label>
+                                    <input type="text" name="third-hole-par" id="third-hole-par" required><br>
+
+                                    <label for="fourth-hole-par">Hole 4</label>
+                                    <input type="text" name="fourth-hole-par" id="fourth-hole-par" required>
+
+                                    <label for="fifth-hole-par">Hole 5</label>
+                                    <input type="text" name="fifth-hole-par" id="fifth-hole-par" required>
+
+                                    <label for="sixth-hole-par">Hole 6</label>
+                                    <input type="text" name="sixth-hole-par" id="sixth-hole-par" required><br>
+
+                                    <label for="seventh-hole-par">Hole 7</label>
+                                    <input type="text" name="seventh-hole-par" id="seventh-hole-par" required>
+
+                                    <label for="eighth-hole-par">Hole 8</label>
+                                    <input type="text" name="eighth-hole-par" id="eighth-hole-par" required>
+
+                                    <label for="ninth-hole-par">Hole 9</label>
+                                    <input type="text" name="ninth-hole-par" id="ninth-hole-par" required><br><br>
+                                </div>  
+
+                                <div class="backNinePars">
+                                    <legend>Back 9 pars (leave blank for 9 hole courses)</legend>
+                                    <label for="tenth-hole-par">Hole 10</label>
+                                    <input type="text" name="tenth-hole-par" id="tenth-hole-par">
+
+                                    <label for="eleventh-hole-par">Hole 11</label>
+                                    <input type="text" name="eleventh-hole-par" id="eleventh-hole-par">
+
+                                    <label for="twelfth-hole-par">Hole 12</label>
+                                    <input type="text" name="twelfth-hole-par" id="twelfth-hole-par"><br>
+
+                                    <label for="thirteenth-hole-par">Hole 13</label>
+                                    <input type="text" name="thirteenth-hole-par" id="thirteenth-hole-par">
+
+                                    <label for="fourteenth-hole-par">Hole 14</label>
+                                    <input type="text" name="fourteenth-hole-par" id="fourteenth-hole-par">
+
+                                    <label for="fifteenth-hole-par">Hole 15</label>
+                                    <input type="text" name="fifteenth-hole-par" id="fifteenth-hole-par"><br>
+
+                                    <label for="sixteenth-hole-par">Hole 16</label>
+                                    <input type="text" name="sixteenth-hole-par" id="sixteenth-hole-par">
+
+                                    <label for="seventeenth-hole-par">Hole 17</label>
+                                    <input type="text" name="seventeeth-hole-par" id="seventeenth-hole-par">
+
+                                    <label for="eighteenth-hole-par">Hole 18</label>
+                                    <input type="text" name="eighteenth-hole-par" id="eighteenth-hole-par"><br><br>
+                                </div>
+                            </fieldset>
+                            <button type="submit">Submit</button><br>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer role="contentinfo">
+
+    </footer>
+    
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="./js/index.js"></script>
+</body>
+</html>

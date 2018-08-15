@@ -109,6 +109,10 @@ function getStatInfo() {
     return statReturnArray;
 }
 
+function editRound(round) {
+    console.log(round);
+}
+
 function displayGolfInfo(rounds, golfers, courses, stats) {
     $('#golfer-info').append(`
     ${golfers.golfers[0].golferName.firstName} ${golfers.golfers[0].golferName.lastName}
@@ -118,26 +122,46 @@ function displayGolfInfo(rounds, golfers, courses, stats) {
     $('#stat-info').append(`
         USGA Handicap: ${stats[1]}<br>
         Avg shots over par per round (18 holes): ${stats[0]}<br>
-        Best round: ${stats[2].roundDate} @ ${courses.courseName} - shot a ${stats[2].roundScore()} over ${stats[2].holeScores.length} holes on a Par ${courses.totalPar}
+        Best round: ${stats[2].roundDate} @ ${courses.courseName} - shot a ${stats[2].roundScore()} over ${stats[2].holeScores.length} holes on a Par ${courses.totalPar()}
         
     `)
 
     rounds.golfRounds.forEach(function(element) {
-        $('#round-info').append(`
-            ${element.roundDate} | 
+        $('#round-results').append(`
+            
+            <p hidden>${element.roundId}</p>
+            <p>${element.roundDate} | 
             ${courses.courseName} | 
             ${courses.courseLocation}<br>
             Holes played: ${element.holeScores.length} |
             Shots ${element.roundScore()} |
-            Course Par ${courses.totalPar} |
-            Score +${element.roundScore() - courses.totalPar}
-            <br><br>
+            Course Par ${courses.totalPar()} |
+            Score +${element.roundScore() - courses.totalPar()}
+            </p>
+            <button class="editRoundButton">Edit Round</button>
+            
         `)
+    });
+}
+
+function clickWatcher() {
+
+    //add round button on home page
+    $("#add-round-button").click(function() {
+        location.href = "./addround.html";
+    })    
+
+    //edit a round button on home page
+    $('#round-results').on('click','.editRoundButton', function(){ 
+        let selectedRound = $(this).prev().prev().text()
+        location.href = "./editround.html";
+        editRound(selectedRound);    
     });
 }
 
 function getAndDisplayInfo() {
     getGolfInfo(displayGolfInfo);
+    clickWatcher();
 }
 
 $(getAndDisplayInfo);
@@ -267,7 +291,9 @@ const MOCK_COURSES = {
             "courseName": "Hoodkroft Country Club",
             "courseLocation": "Derry, New Hampshire",
             "nineOrEighteen": "9",
-            "totalPar": "36",
+            "totalPar": function() {
+                return this.coursePars.reduce((a,b) => a+b, 0);
+            },
             "courseRating": "35.6",
             "courseSlope": "125",
             "coursePars": [4,4,3,5,4,4,4,3,5]

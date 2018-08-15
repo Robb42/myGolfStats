@@ -23,10 +23,18 @@
     <main role="main">
         <div class="row">
             <div class="col-12">
-                <section role="region" id="player-card" class="playerCardContainer">
+                <section role="region" id="player-card" class="playerCard mainCardContainer" aria-live="polite">
                     <div id="golfer-info" class="golferInfo"></div>
                     <div id="stat-info" class="statInfo"></div>
-                    <div id="round-info" class="roundInfo"></div>
+                    <div id="round-info" class="roundInfo">
+                        <h2>Recent Rounds</h2>
+
+                        
+                        <button id="add-round-button" class="addRoundButton">Add Round</button>
+                        <div id="round-results" class="roundResults">
+
+                        </div>
+                    </div>
 
 
                 </section>
