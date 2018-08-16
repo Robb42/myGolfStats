@@ -18,7 +18,6 @@ function getCourse() {
 }
 
 function getStatInfo() {
-    let runningSum = 0;
     let runningSumArray = [];
     let overParAvg;
     for (let i = 0; i < MOCK_ROUNDS.golfRounds.length; i++) {
@@ -109,26 +108,22 @@ function getStatInfo() {
     return statReturnArray;
 }
 
-function editRound(round) {
-    console.log(round);
-}
-
 function displayGolfInfo(rounds, golfers, courses, stats) {
+    //Display golfer name
     $('#golfer-info').append(`
     ${golfers.golfers[0].golferName.firstName} ${golfers.golfers[0].golferName.lastName}
-    
     `)
 
+    //Display stats
     $('#stat-info').append(`
         USGA Handicap: ${stats[1]}<br>
         Avg shots over par per round (18 holes): ${stats[0]}<br>
         Best round: ${stats[2].roundDate} @ ${courses.courseName} - shot a ${stats[2].roundScore()} over ${stats[2].holeScores.length} holes on a Par ${courses.totalPar()}
-        
     `)
 
+    //Display rounds
     rounds.golfRounds.forEach(function(element) {
         $('#round-results').append(`
-            
             <p hidden>${element.roundId}</p>
             <p>${element.roundDate} | 
             ${courses.courseName} | 
@@ -139,24 +134,145 @@ function displayGolfInfo(rounds, golfers, courses, stats) {
             Score +${element.roundScore() - courses.totalPar()}
             </p>
             <button class="editRoundButton">Edit Round</button>
-            
         `)
-    });
+    });    
+
+}
+
+function getCourseOptions() {
+    MOCK_COURSES.golfCourses.forEach(function(item) {
+        let optionElement = document.createElement("option");
+        optionElement.textContext = item.courseName;
+        console.log(item);
+        document.getElementById("course-picker").appendChild(optionElement);
+    })
+}
+
+function getEditRoundInfo(id) {
+    for (let i = 0; i < MOCK_ROUNDS.golfRounds.length; i++) {
+        if (MOCK_ROUNDS.golfRounds[i].roundId == id) {
+            let editRoundDate = MOCK_ROUNDS.golfRounds[i].roundDate;
+            let editCourseId = MOCK_ROUNDS.golfRounds[i].courseId;
+            for (let j = 0; j < MOCK_COURSES.golfCourses.length; j++) {
+                if (MOCK_COURSES.golfCourses[j].courseId == editCourseId) {
+                    $('#edit-date-course').text(`
+                        Editing ${editRoundDate} round at ${MOCK_COURSES.golfCourses[j].courseName}
+                    `);
+                }
+            } 
+        }
+    }
+}
+
+function editRoundScores(scores) {
+    console.log(scores);
+}
+
+function addRoundScores(scores, course, date) {
+    console.log(scores, course, date);
 }
 
 function clickWatcher() {
-
     //add round button on home page
-    $("#add-round-button").click(function() {
-        location.href = "./addround.html";
+    $("#round-info").on('click', '#add-round-button', function() {
+        $('#player-card').prop('hidden', true);
+        $('#add-round').prop('hidden', false);
+        $('#edit-round').prop('hidden', true);
+        $('#add-course').prop('hidden', true);
+        getCourseOptions();
     })    
+
+    //submit add round
+    $("#add-round-page-button").submit(function() {
+        $('#player-card').prop('hidden', false);
+        $('#add-round').prop('hidden', true);
+        $('#edit-round').prop('hidden', true);
+        $('#add-course').prop('hidden', true);
+        let course = $("#course-picker").val();
+        let date = $("#date-picker").val();
+        let hole1 = $("#first-hole").val();
+        let hole2 = $("#second-hole").val();
+        let hole3 = $("#third-hole").val();
+        let hole4 = $("#fourth-hole").val();
+        let hole5 = $("#fifth-hole").val();
+        let hole6 = $("#sixth-hole").val();
+        let hole7 = $("#seventh-hole").val();
+        let hole8 = $("#eighth-hole").val();
+        let hole9 = $("#ninth-hole").val();
+        let hole10 = $("#tenth-hole").val();
+        let hole11 = $("#eleventh-hole").val();
+        let hole12 = $("#twelfth-hole").val();
+        let hole13 = $("#thirteenth-hole").val();
+        let hole14 = $("#fourteenth-hole").val();
+        let hole15 = $("#fifteenth-hole").val();
+        let hole16 = $("#sixteenth-hole").val();
+        let hole17 = $("#seventeenth-hole").val();
+        let hole18 = $("#eighteenth-hole").val();
+        const addRoundScores = [hole1, hole2, hole3, hole4, hole5, hole6, hole7, hole8, hole9, hole10, hole11, hole12, hole13, hole14, hole15, hole16, hole17, hole18];
+        addRoundScores(addRoundScores, course, date);
+    })
+
+    //cancel add round 
+    $("#edit-round-form").submit(function() {
+        $('#player-card').prop('hidden', false);
+        $('#add-round').prop('hidden', true);
+        $('#edit-round').prop('hidden', true);
+        $('#add-course').prop('hidden', true);
+    })
+
+    //submit add course
+    $("#new-course-button").submit(function() {
+        $('#player-card').prop('hidden', true);
+        $('#add-round').prop('hidden', true);
+        $('#edit-round').prop('hidden', true);
+        $('#add-course').prop('hidden', false);
+    })
 
     //edit a round button on home page
     $('#round-results').on('click','.editRoundButton', function(){ 
-        let selectedRound = $(this).prev().prev().text()
-        location.href = "./editround.html";
-        editRound(selectedRound);    
-    });
+        let selectedRound = $(this).prev().prev().text();
+        $('#player-card').prop('hidden', true);
+        $('#add-round').prop('hidden', true);
+        $('#edit-round').prop('hidden', false);
+        $('#add-course').prop('hidden', true); 
+        getEditRoundInfo(selectedRound);
+    })
+
+    //submit edit round 
+    $("#edit-round-form").submit(function() {
+        $('#player-card').prop('hidden', false);
+        $('#add-round').prop('hidden', true);
+        $('#edit-round').prop('hidden', true);
+        $('#add-course').prop('hidden', true);
+        let hole1 = $("#first-hole").val();
+        let hole2 = $("#second-hole").val();
+        let hole3 = $("#third-hole").val();
+        let hole4 = $("#fourth-hole").val();
+        let hole5 = $("#fifth-hole").val();
+        let hole6 = $("#sixth-hole").val();
+        let hole7 = $("#seventh-hole").val();
+        let hole8 = $("#eighth-hole").val();
+        let hole9 = $("#ninth-hole").val();
+        let hole10 = $("#tenth-hole").val();
+        let hole11 = $("#eleventh-hole").val();
+        let hole12 = $("#twelfth-hole").val();
+        let hole13 = $("#thirteenth-hole").val();
+        let hole14 = $("#fourteenth-hole").val();
+        let hole15 = $("#fifteenth-hole").val();
+        let hole16 = $("#sixteenth-hole").val();
+        let hole17 = $("#seventeenth-hole").val();
+        let hole18 = $("#eighteenth-hole").val();
+        const editRoundScores = [hole1, hole2, hole3, hole4, hole5, hole6, hole7, hole8, hole9, hole10, hole11, hole12, hole13, hole14, hole15, hole16, hole17, hole18];
+        editRoundScores(editRoundScores);
+    })
+
+    //cancel edit round 
+    $("#edit-round-form").submit(function() {
+        $('#player-card').prop('hidden', false);
+        $('#add-round').prop('hidden', true);
+        $('#edit-round').prop('hidden', true);
+        $('#add-course').prop('hidden', true);
+    })
 }
 
 function getAndDisplayInfo() {
@@ -165,6 +281,8 @@ function getAndDisplayInfo() {
 }
 
 $(getAndDisplayInfo);
+
+
 
 const MOCK_ROUNDS = {
     "golfRounds": [
