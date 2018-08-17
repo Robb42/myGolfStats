@@ -6,6 +6,9 @@ function getGolfInfo(callbackFn) {
     }, 100);
 }
 
+
+
+
 function getCourse() {
     let golfCourseName = '';
     for (let i = 0; i < MOCK_COURSES.golfCourses.length; i++) {
@@ -16,6 +19,9 @@ function getCourse() {
         }
     }
 }
+
+
+
 
 function getStatInfo() {
     let runningSumArray = [];
@@ -108,6 +114,9 @@ function getStatInfo() {
     return statReturnArray;
 }
 
+
+
+
 function displayGolfInfo(rounds, golfers, courses, stats) {
     //Display golfer name
     $('#golfer-info').append(`
@@ -139,14 +148,24 @@ function displayGolfInfo(rounds, golfers, courses, stats) {
 
 }
 
+
+
+
 function getCourseOptions() {
     MOCK_COURSES.golfCourses.forEach(function(item) {
-        let optionElement = document.createElement("option");
-        optionElement.textContext = item.courseName;
         console.log(item);
-        document.getElementById("course-picker").appendChild(optionElement);
+        let selectCourse = document.getElementById("course-picker");
+        let optionElement = document.createElement("option");
+
+        optionElement.textContent = item.courseName;
+        
+        selectCourse.appendChild(optionElement);
+        
     })
 }
+
+
+
 
 function getEditRoundInfo(id) {
     for (let i = 0; i < MOCK_ROUNDS.golfRounds.length; i++) {
@@ -164,13 +183,22 @@ function getEditRoundInfo(id) {
     }
 }
 
+
+
+
 function editRoundScores(scores) {
     console.log(scores);
 }
 
+
+
+
 function addRoundScores(scores, course, date) {
     console.log(scores, course, date);
 }
+
+
+
 
 function clickWatcher() {
     //add round button on home page
@@ -183,7 +211,8 @@ function clickWatcher() {
     })    
 
     //submit add round
-    $("#add-round-page-button").submit(function() {
+    $("#add-new-round").submit(function() {
+        event.preventDefault();
         $('#player-card').prop('hidden', false);
         $('#add-round').prop('hidden', true);
         $('#edit-round').prop('hidden', true);
@@ -208,8 +237,8 @@ function clickWatcher() {
         let hole16 = $("#sixteenth-hole").val();
         let hole17 = $("#seventeenth-hole").val();
         let hole18 = $("#eighteenth-hole").val();
-        const addRoundScores = [hole1, hole2, hole3, hole4, hole5, hole6, hole7, hole8, hole9, hole10, hole11, hole12, hole13, hole14, hole15, hole16, hole17, hole18];
-        addRoundScores(addRoundScores, course, date);
+        const addRoundScoresArray = [hole1, hole2, hole3, hole4, hole5, hole6, hole7, hole8, hole9, hole10, hole11, hole12, hole13, hole14, hole15, hole16, hole17, hole18];
+        addRoundScores(addRoundScoresArray, course, date);
     })
 
     //cancel add round 
@@ -221,7 +250,7 @@ function clickWatcher() {
     })
 
     //submit add course
-    $("#new-course-button").submit(function() {
+    $("#add-round").on('click', '#new-course-button', function() {
         $('#player-card').prop('hidden', true);
         $('#add-round').prop('hidden', true);
         $('#edit-round').prop('hidden', true);
@@ -240,30 +269,32 @@ function clickWatcher() {
 
     //submit edit round 
     $("#edit-round-form").submit(function() {
+        event.preventDefault();
         $('#player-card').prop('hidden', false);
         $('#add-round').prop('hidden', true);
         $('#edit-round').prop('hidden', true);
         $('#add-course').prop('hidden', true);
-        let hole1 = $("#first-hole").val();
-        let hole2 = $("#second-hole").val();
-        let hole3 = $("#third-hole").val();
-        let hole4 = $("#fourth-hole").val();
-        let hole5 = $("#fifth-hole").val();
-        let hole6 = $("#sixth-hole").val();
-        let hole7 = $("#seventh-hole").val();
-        let hole8 = $("#eighth-hole").val();
-        let hole9 = $("#ninth-hole").val();
-        let hole10 = $("#tenth-hole").val();
-        let hole11 = $("#eleventh-hole").val();
-        let hole12 = $("#twelfth-hole").val();
-        let hole13 = $("#thirteenth-hole").val();
-        let hole14 = $("#fourteenth-hole").val();
-        let hole15 = $("#fifteenth-hole").val();
-        let hole16 = $("#sixteenth-hole").val();
-        let hole17 = $("#seventeenth-hole").val();
-        let hole18 = $("#eighteenth-hole").val();
-        const editRoundScores = [hole1, hole2, hole3, hole4, hole5, hole6, hole7, hole8, hole9, hole10, hole11, hole12, hole13, hole14, hole15, hole16, hole17, hole18];
-        editRoundScores(editRoundScores);
+        let hole1 = $("#first-hole-edit").val();
+        let hole2 = $("#second-hole-edit").val();
+        let hole3 = $("#third-hole-edit").val();
+        let hole4 = $("#fourth-hole-edit").val();
+        let hole5 = $("#fifth-hole-edit").val();
+        let hole6 = $("#sixth-hole-edit").val();
+        let hole7 = $("#seventh-hole-edit").val();
+        let hole8 = $("#eighth-hole-edit").val();
+        let hole9 = $("#ninth-hole-edit").val();
+        let hole10 = $("#tenth-hole-edit").val();
+        let hole11 = $("#eleventh-hole-edit").val();
+        let hole12 = $("#twelfth-hole-edit").val();
+        let hole13 = $("#thirteenth-hole-edit").val();
+        let hole14 = $("#fourteenth-hole-edit").val();
+        let hole15 = $("#fifteenth-hole-edit").val();
+        let hole16 = $("#sixteenth-hole-edit").val();
+        let hole17 = $("#seventeenth-hole-edit").val();
+        let hole18 = $("#eighteenth-hole-edit").val();
+        const editRoundScoresArray = [hole1, hole2, hole3, hole4, hole5, hole6, hole7, hole8, hole9, hole10, hole11, hole12, hole13, hole14, hole15, hole16, hole17, hole18];
+        console.log(editRoundScoresArray);
+        editRoundScores(editRoundScoresArray);
     })
 
     //cancel edit round 
@@ -275,10 +306,16 @@ function clickWatcher() {
     })
 }
 
+
+
+
 function getAndDisplayInfo() {
     getGolfInfo(displayGolfInfo);
     clickWatcher();
 }
+
+
+
 
 $(getAndDisplayInfo);
 
@@ -407,6 +444,18 @@ const MOCK_COURSES = {
         {
             "courseId": "111aaa111a",
             "courseName": "Hoodkroft Country Club",
+            "courseLocation": "Derry, New Hampshire",
+            "nineOrEighteen": "9",
+            "totalPar": function() {
+                return this.coursePars.reduce((a,b) => a+b, 0);
+            },
+            "courseRating": "35.6",
+            "courseSlope": "125",
+            "coursePars": [4,4,3,5,4,4,4,3,5]
+        },
+        {
+            "courseId": "111aaa111b",
+            "courseName": "TEST Country Club",
             "courseLocation": "Derry, New Hampshire",
             "nineOrEighteen": "9",
             "totalPar": function() {

@@ -43,7 +43,7 @@
                             <label for="course-picker">Choose a golf course</label><br>
                             <select name="course-picker" id="course-picker" required>
                             </select><br>
-                            <button id="new-course-button" type="submit" formnovalidate>Add New Course</button>
+                            <button id="new-course-button" type="button" name="new-course-button" formnovalidate>Add New Course</button>
                             <br><br>
                             <label for="date-picker">Choose a date</label><br>
                             <input type="date" id="date-picker" name="date-picker"><br><br>
@@ -91,7 +91,7 @@
                                     <input type="text" name="eighteenth-hole" id="eighteenth-hole"><br><br>
                                 </div>
                             </fieldset>
-                            <button id="add-round-page-button" type="submit">Submit</button>
+                            <button id="add-round-page-button" name="add-round-page-button" type="submit">Submit</button>
                             <button type="cancel" formnovalidate>Cancel</button>
                             <br>
                         </form>
@@ -104,45 +104,45 @@
                                 <fieldset name="round-scores">
                                     <div class="frontNine">
                                         <legend>Front 9 scores</legend>
-                                        <label for="first-hole">Hole 1</label>
-                                        <input type="text" name="first-hole" id="first-hole" required>
-                                        <label for="second-hole">Hole 2</label>
-                                        <input type="text" name="second-hole" id="second-hole" required>
-                                        <label for="third-hole">Hole 3</label>
-                                        <input type="text" name="third-hole" id="third-hole" required><br>
-                                        <label for="fourth-hole">Hole 4</label>
-                                        <input type="text" name="fourth-hole" id="fourth-hole" required>
-                                        <label for="fifth-hole">Hole 5</label>
-                                        <input type="text" name="fifth-hole" id="fifth-hole" required>
-                                        <label for="sixth-hole">Hole 6</label>
-                                        <input type="text" name="sixth-hole" id="sixth-hole" required><br>
-                                        <label for="seventh-hole">Hole 7</label>
-                                        <input type="text" name="seventh-hole" id="seventh-hole" required>
-                                        <label for="eighth-hole">Hole 8</label>
-                                        <input type="text" name="eighth-hole" id="eighth-hole" required>
-                                        <label for="ninth-hole">Hole 9</label>
-                                        <input type="text" name="ninth-hole" id="ninth-hole" required><br><br>
+                                        <label for="first-hole-edit">Hole 1</label>
+                                        <input type="text" name="first-hole-edit" id="first-hole-edit" required>
+                                        <label for="second-hole-edit">Hole 2</label>
+                                        <input type="text" name="second-hole-edit" id="second-hole-edit" required>
+                                        <label for="third-hole-edit">Hole 3</label>
+                                        <input type="text" name="third-hole-edit" id="third-hole-edit" required><br>
+                                        <label for="fourth-hole-edit">Hole 4</label>
+                                        <input type="text" name="fourth-hole-edit" id="fourth-hole-edit" required>
+                                        <label for="fifth-hole-edit">Hole 5</label>
+                                        <input type="text" name="fifth-hole-edit" id="fifth-hole-edit" required>
+                                        <label for="sixth-hole-edit">Hole 6</label>
+                                        <input type="text" name="sixth-hole-edit" id="sixth-hole-edit" required><br>
+                                        <label for="seventh-hole-edit">Hole 7</label>
+                                        <input type="text" name="seventh-hole-edit" id="seventh-hole-edit" required>
+                                        <label for="eighth-hole-edit">Hole 8</label>
+                                        <input type="text" name="eighth-hole-edit" id="eighth-hole-edit" required>
+                                        <label for="ninth-hole-edit">Hole 9</label>
+                                        <input type="text" name="ninth-hole-edit" id="ninth-hole-edit" required><br><br>
                                     </div>  
                                     <div class="backNine">
                                         <legend>Back 9 scores (leave blank for 9 hole rounds)</legend>
-                                        <label for="tenth-hole">Hole 10</label>
-                                        <input type="text" name="tenth-hole" id="tenth-hole">
-                                        <label for="eleventh-hole">Hole 11</label>
-                                        <input type="text" name="eleventh-hole" id="eleventh-hole">
-                                        <label for="twelfth-hole">Hole 12</label>
-                                        <input type="text" name="twelfth-hole" id="twelfth-hole"><br>
-                                        <label for="thirteenth-hole">Hole 13</label>
-                                        <input type="text" name="thirteenth-hole" id="thirteenth-hole">
-                                        <label for="fourteenth-hole">Hole 14</label>
-                                        <input type="text" name="fourteenth-hole" id="fourteenth-hole">
-                                        <label for="fifteenth-hole">Hole 15</label>
-                                        <input type="text" name="fifteenth-hole" id="fifteenth-hole"><br>
-                                        <label for="sixteenth-hole">Hole 16</label>
-                                        <input type="text" name="sixteenth-hole" id="sixteenth-hole">
-                                        <label for="seventeenth-hole">Hole 17</label>
-                                        <input type="text" name="seventeeth-hole" id="seventeenth-hole">
-                                        <label for="eighteenth-hole">Hole 18</label>
-                                        <input type="text" name="eighteenth-hole" id="eighteenth-hole"><br><br>
+                                        <label for="tenth-hole-edit">Hole 10</label>
+                                        <input type="text" name="tenth-hole-edit" id="tenth-hole-edit">
+                                        <label for="eleventh-hole-edit">Hole 11</label>
+                                        <input type="text" name="eleventh-hole-edit" id="eleventh-hole-edit">
+                                        <label for="twelfth-hole-edit">Hole 12</label>
+                                        <input type="text" name="twelfth-hole-edit" id="twelfth-hole-edit"><br>
+                                        <label for="thirteenth-hole-edit">Hole 13</label>
+                                        <input type="text" name="thirteenth-hole-edit" id="thirteenth-hole-edit">
+                                        <label for="fourteenth-hole-edit">Hole 14</label>
+                                        <input type="text" name="fourteenth-hole-edit" id="fourteenth-hole-edit">
+                                        <label for="fifteenth-hole-edit">Hole 15</label>
+                                        <input type="text" name="fifteenth-hole-edit" id="fifteenth-hole-edit"><br>
+                                        <label for="sixteenth-hole-edit">Hole 16</label>
+                                        <input type="text" name="sixteenth-hole-edit" id="sixteenth-hole-edit">
+                                        <label for="seventeenth-hole-edit">Hole 17</label>
+                                        <input type="text" name="seventeeth-hole-edit" id="seventeenth-hole-edit">
+                                        <label for="eighteenth-hole-edit">Hole 18</label>
+                                        <input type="text" name="eighteenth-hole-edit" id="eighteenth-hole-edit"><br><br>
                                     </div>
                                 </fieldset>
                                 <button type="submit">Submit</button>
