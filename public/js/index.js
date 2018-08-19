@@ -153,14 +153,10 @@ function displayGolfInfo(rounds, golfers, courses, stats) {
 
 function getCourseOptions() {
     MOCK_COURSES.golfCourses.forEach(function(item) {
-        console.log(item);
         let selectCourse = document.getElementById("course-picker");
         let optionElement = document.createElement("option");
-
         optionElement.textContent = item.courseName;
-        
         selectCourse.appendChild(optionElement);
-        
     })
 }
 
@@ -186,22 +182,31 @@ function getEditRoundInfo(id) {
 
 
 
-function editRoundScores(scores) {
-    console.log(scores);
+function addCourse(pars, name, city, state, rating, slope) {
+    console.log(pars, name, city, state, rating, slope);
+    let formReset = document.getElementById("add-course-form");
+    formReset.reset();
 }
-
-
 
 
 function addRoundScores(scores, course, date) {
     console.log(scores, course, date);
+    let formReset = document.getElementById("add-new-round");
+    formReset.reset();
+}
+
+
+function editRoundScores(scores) {
+    console.log(scores);
+    let formReset = document.getElementById("edit-round-form");
+    formReset.reset();
 }
 
 
 
 
 function clickWatcher() {
-    //add round button on home page
+    //Home - add round button
     $("#round-info").on('click', '#add-round-button', function() {
         $('#player-card').prop('hidden', true);
         $('#add-round').prop('hidden', false);
@@ -210,7 +215,7 @@ function clickWatcher() {
         getCourseOptions();
     })    
 
-    //submit add round
+    //AddRound - submit 
     $("#add-new-round").submit(function() {
         event.preventDefault();
         $('#player-card').prop('hidden', false);
@@ -241,23 +246,79 @@ function clickWatcher() {
         addRoundScores(addRoundScoresArray, course, date);
     })
 
-    //cancel add round 
-    $("#edit-round-form").submit(function() {
-        $('#player-card').prop('hidden', false);
-        $('#add-round').prop('hidden', true);
-        $('#edit-round').prop('hidden', true);
-        $('#add-course').prop('hidden', true);
-    })
-
-    //submit add course
+    //AddRound - add new course button
     $("#add-round").on('click', '#new-course-button', function() {
         $('#player-card').prop('hidden', true);
         $('#add-round').prop('hidden', true);
         $('#edit-round').prop('hidden', true);
         $('#add-course').prop('hidden', false);
+        let formReset = document.getElementById("add-new-round");
+        formReset.reset();
     })
 
-    //edit a round button on home page
+    //AddRound - cancel
+    $("#add-round").on('click', '#add-round-cancel', function() {
+        $('#player-card').prop('hidden', false);
+        $('#add-round').prop('hidden', true);
+        $('#edit-round').prop('hidden', true);
+        $('#add-course').prop('hidden', true);
+        let formReset = document.getElementById("add-new-round");
+        formReset.reset();
+    })
+
+    //AddCourse - submit
+    $("#add-course-form").submit(function () {
+        //CAN'T GET CITY, RATING OR SLOPE INPUTS TO PASS THROUGH
+        event.preventDefault();
+        $('#player-card').prop('hidden', false);
+        $('#add-round').prop('hidden', true);
+        $('#edit-round').prop('hidden', true);
+        $('#add-course').prop('hidden', true);
+        let courseName = $("#course-name").val();
+        console.log($("#course-name").val());
+        let courseCity = $("course-city").val();
+        console.log($("#course-city").val());
+        let courseState = $("#course-state").val();
+        console.log($("#course-state").val());
+        let courseRating = $("course-rating").val();
+        console.log($("#course-rating").val());
+        let courseSlope = $("course-slope").val();
+        console.log($("#course-slope").val());
+        let hole1 = $("#first-hole-par").val();
+        let hole2 = $("#second-hole-par").val();
+        let hole3 = $("#third-hole-par").val();
+        let hole4 = $("#fourth-hole-par").val();
+        let hole5 = $("#fifth-hole-par").val();
+        let hole6 = $("#sixth-hole-par").val();
+        let hole7 = $("#seventh-hole-par").val();
+        let hole8 = $("#eighth-hole-par").val();
+        let hole9 = $("#ninth-hole-par").val();
+        let hole10 = $("#tenth-hole-par").val();
+        let hole11 = $("#eleventh-hole-par").val();
+        let hole12 = $("#twelfth-hole-par").val();
+        let hole13 = $("#thirteenth-hole-par").val();
+        let hole14 = $("#fourteenth-hole-par").val();
+        let hole15 = $("#fifteenth-hole-par").val();
+        let hole16 = $("#sixteenth-hole-par").val();
+        let hole17 = $("#seventeenth-hole-par").val();
+        let hole18 = $("#eighteenth-hole-par").val();
+        const addCourseParsArray = [hole1, hole2, hole3, hole4, hole5, hole6, hole7, hole8, hole9, hole10, hole11, hole12, hole13, hole14, hole15, hole16, hole17, hole18];
+        console.log(courseName, courseCity, courseState, courseRating, courseSlope);
+        addCourse(addCourseParsArray, courseName, courseCity, courseState, courseRating, courseSlope);
+    })
+
+
+    //AddCourse - cancel
+    $("#add-course").on('click', '#add-course-cancel', function() {
+        $('#player-card').prop('hidden', false);
+        $('#add-round').prop('hidden', true);
+        $('#edit-round').prop('hidden', true);
+        $('#add-course').prop('hidden', true);
+        let formReset = document.getElementById("add-course-form");
+        formReset.reset();
+    })
+
+     //Home - edit round button
     $('#round-results').on('click','.editRoundButton', function(){ 
         let selectedRound = $(this).prev().prev().text();
         $('#player-card').prop('hidden', true);
@@ -267,7 +328,7 @@ function clickWatcher() {
         getEditRoundInfo(selectedRound);
     })
 
-    //submit edit round 
+    //EditRound - submit
     $("#edit-round-form").submit(function() {
         event.preventDefault();
         $('#player-card').prop('hidden', false);
@@ -297,12 +358,14 @@ function clickWatcher() {
         editRoundScores(editRoundScoresArray);
     })
 
-    //cancel edit round 
-    $("#edit-round-form").submit(function() {
+    //EditRound - cancel
+    $("#edit-round").on('click', '#edit-round-cancel', function() {
         $('#player-card').prop('hidden', false);
         $('#add-round').prop('hidden', true);
         $('#edit-round').prop('hidden', true);
         $('#add-course').prop('hidden', true);
+        let formReset = document.getElementById("edit-round-form");
+        formReset.reset();
     })
 }
 
