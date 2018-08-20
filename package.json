@@ -17,7 +17,7 @@
   "devDependencies": {},
   "scripts": {
     "start": "nodemon server.js",
-    "test": "mocha"
+    "test": "mocha  --timeout 15000"
   },
   "author": "Rob Bertini",
   "license": "ISC"
